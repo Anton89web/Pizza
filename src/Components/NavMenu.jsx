@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const NavMenu = () => {
   return (
@@ -15,14 +16,14 @@ const NavMenu = () => {
           <div className="main-menu">
             <div className="menu-main-nav-menu-container">
               <ul id="menu-main-nav-menu" className="sf-menu">
-                <li className="menu-item menu-item-home current-menu-item current_page_item"><a
-                  href="index.html">Главная</a></li>
-                <li className="menu-item"><a href="menu.html">Меню</a></li>
-                <li className="menu-item"><a href="pizzas.html">Пицца</a></li>
-                <li className="menu-item"><a href="about.html">О нас</a></li>
-                <li className="menu-item"><a href="contact.html">Контакты</a></li>
-                <li className="menu-item"><a href="blog.html">Блог</a></li>
-                <li className="menu-item"><a href="blog.html">Корзина</a></li>
+                <li className="menu-item menu-item-home current-menu-item current_page_item">
+                  <Link to="/">Главная</Link></li>
+                <li className="menu-item"><Link to="/menu">Меню</Link></li>
+                <li className="menu-item"><Link to="/pizza">Пицца</Link></li>
+                <li className="menu-item"><Link to="/about">О нас</Link></li>
+                <li className="menu-item"><Link to="/contacts">Контакты</Link></li>
+                <li className="menu-item"><Link to="/blog">Блог</Link></li>
+                <li className="menu-item"><Link to="/cart">Корзина</Link></li>
               </ul>
             </div>
           </div>

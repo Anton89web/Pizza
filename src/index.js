@@ -6,6 +6,7 @@ import './Styles/animsition.css';
 import './Styles/flaticon.css';
 import './Styles/media.css';
 import './Styles/font-awesome.css'
+import './Styles/pe-icon-7-stroke.css'
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

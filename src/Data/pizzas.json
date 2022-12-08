@@ -1,0 +1,263 @@
+[
+  {
+    "id": 0,
+    "imageUrl": "static/images/pizzas/calzone.jpeg",
+    "title": "Фреш с перцем",
+    "ingredients": "Пепперони, сыр, маслины, томатный соус, лук, красный перец.",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 803,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 1,
+    "imageUrl": "static/images/pizzas/classic.jpeg",
+    "title": "Сырная",
+    "ingredients": "Свежий рикотта, пармезан, маслины, томатный соус, моцарелла.",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      40
+    ],
+    "price": 245,
+    "category": 0,
+    "rating": 6
+  },
+  {
+    "id": 2,
+    "imageUrl": "static/images/pizzas/farmer.jpeg",
+    "title": "Цыпленок барбекю",
+    "ingredients": "Цыпленок барбекю, свежий зеленый перец, томаты, маслины, сыр.",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      40
+    ],
+    "price": 295,
+    "category": 1,
+    "rating": 4
+  },
+  {
+    "id": 3,
+    "imageUrl": "static/images/pizzas/freshness.jpeg",
+    "title": "Cладкий цыпленок",
+    "ingredients": "Цыпленок, особый соус, зеленый перец, томаты, маслины, сыр.",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      30,
+      40
+    ],
+    "price": 275,
+    "category": 2,
+    "rating": 2
+  },
+  {
+    "id": 4,
+    "imageUrl": "static/images/pizzas/hawaii.jpeg",
+    "title": "Чизбургер-пицца",
+    "ingredients": "Свежий салат, мясо, сосиски, томаты, маслины, сыр.",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 415,
+    "category": 3,
+    "rating": 8
+  },
+  {
+    "id": 5,
+    "imageUrl": "static/images/pizzas/margarita.jpeg",
+    "title": "Крэйзи пепперони",
+    "ingredients": "Пепперони тройная порция, сыр, маслины, томатный соус, грибы, лук, салат.",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      30,
+      40
+    ],
+    "price": 580,
+    "category": 2,
+    "rating": 2
+  },
+  {
+    "id": 6,
+    "imageUrl": "static/images/pizzas/mexican.jpeg",
+    "title": "Пепперони",
+    "ingredients": "Пепперони, сыр, маслины, томатный соус, грибы, мясо, лук, салат.",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 675,
+    "category": 1,
+    "rating": 9
+  },
+  {
+    "id": 7,
+    "imageUrl": "static/images/pizzas/margarita.jpeg",
+    "title": "Маргарита",
+    "ingredients": "Пепперони, сыр, маслины, томатный соус, грибы, лук.",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      30,
+      40
+    ],
+    "price": 450,
+    "category": 4,
+    "rating": 10
+  },
+  {
+    "id": 8,
+    "imageUrl": "static/images/pizzas/neapolitan.jpeg",
+    "title": "Четыре сезона",
+    "ingredients": "Свежий рикотта, пармезан, лимонный базилик, перец, томатный соус, моцарелла.",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 395,
+    "category": 5,
+    "rating": 10
+  },
+  {
+    "id": 9,
+    "imageUrl": "static/images/pizzas/farmer.jpeg",
+    "title": "Овощи и грибы",
+    "ingredients": "Свежий рикотта, пармезан, лимонный базилик, перец, томатный соус, моцарелла.",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      40
+    ],
+    "price": 285,
+    "category": 5,
+    "rating": 7
+  },
+  {
+    "id": 10,
+    "imageUrl": "static/images/pizzas/hawaii.jpeg",
+    "title": "Гавайская",
+    "ingredients": "Ананас, грибы, маслины, томатный соус, cыр.",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30
+    ],
+    "category": 5,
+    "rating": 7,
+    "price": 360
+  },
+  {
+    "id": 11,
+    "imageUrl": "static/images/pizzas/sea.jpeg",
+    "title": "Дары моря",
+    "ingredients": "Оливки, рыба-меч, осьминог, креветки, свежие грибы, свежие томаты, сыр.",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "category": 5,
+    "rating": 7,
+    "price": 400
+  },
+  {
+    "id": 12,
+    "imageUrl": "static/images/pizzas/calzone.jpeg",
+    "title": "Кальцоне",
+    "ingredients": "Свежий рикотта, пармезан, лимонный базилик, перец, томатный соус, моцарелла.",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      30,
+      40
+    ],
+    "category": 5,
+    "rating": 8,
+    "price": 420
+  },
+  {
+    "id": 13,
+    "imageUrl": "static/images/pizzas/neapolitan.jpeg",
+    "title": "Неаполитанская",
+    "ingredients": "Томаты, орегано, чеснок, оливковое масло, сыр, красный лук, грибы.",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "category": 5,
+    "rating": 6,
+    "price": 430
+  },
+  {
+    "id": 14,
+    "imageUrl": "static/images/pizzas/mexican.jpeg",
+    "title": "Мексиканская",
+    "ingredients": "Жареные бобы, соус энчилада , смесь сыров, начо, кукуруза, лук, сальса, чоризо.",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      40
+    ],
+    "category": 5,
+    "rating": 7,
+    "price": 410
+  }
+]
