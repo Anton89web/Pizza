@@ -55,8 +55,10 @@ const Pizza = () => {
             <div className="categories">
               <ul>
                 {arrCategory.map((category, index) => (
-                  <li onClick={() => setCategoryIndex(index)}
-                      className={(categoryIndex === index) ? "active" : ""}>{category}</li>
+                  <li
+                    key={category}
+                    onClick={() => setCategoryIndex(index)}
+                    className={(categoryIndex === index) ? "active" : ""}>{category}</li>
                 ))}
               </ul>
             </div>
@@ -75,7 +77,7 @@ const Pizza = () => {
             <div className="offer-menu2-items">
 
               {loaded ?
-                pizzasJson.map(pizza => <PizzaCard {...pizza}/>)
+                pizzasJson.map(pizza => <PizzaCard {...pizza} key={pizza.id}/>)
                 : <h3>Загружается...</h3>
               }
 

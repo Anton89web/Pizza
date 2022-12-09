@@ -52,12 +52,12 @@ const Contact = () => {
                   <div className="albertos-contact-form">
                     <div className="contact-detail-title">Контактная форма</div>
                     <div className="app-name"><span className="wpcf7-form-control-wrap name-input">
-                                            <input name="name" id="name" type="text" value="" size="40"
-                                                   className="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
-                                                   aria-required="true" aria-invalid="false" placeholder="Имя"/></span>
+                      <input name="name" id="name" type="text" size="40"
+                             className="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+                             aria-required="true" aria-invalid="false" placeholder="Имя"/></span>
                     </div>
                     <div className="app-phone"><span className="wpcf7-form-control-wrap email-input">
-                                            <input name="mail" id="mail" type="text" value="" size="40"
+                                            <input name="mail" id="mail" type="text" size="40"
                                                    className="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
                                                    aria-required="true" aria-invalid="false"
                                                    placeholder="Email"/></span></div>

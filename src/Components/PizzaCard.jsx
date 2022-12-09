@@ -28,11 +28,13 @@ const PizzaCard = ({imageUrl, title, ingredients, types, sizes, price}) => {
           <div className="pizza-block__selector">
             <ul>
               {types.map((type) => <li
+                key={type}
                 onClick={() => setTestoIndex(type)}
                 className={(testoIndex === type) ? "active" : ""}>{testoType[type]}</li>)}
             </ul>
             <ul style={{"marginBottom": 0}}>
               {sizes.map((e, i) => <li
+                key={e}
                 onClick={() => setSize(i)}
                 className={(size === i) ? "active" : ""}>{e} см.</li>)}
             </ul>
