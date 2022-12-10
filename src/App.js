@@ -8,11 +8,11 @@ import About from "./Pages/About";
 import Blog from "./Pages/Blog";
 import Menu from "./Pages/Menu";
 import Main from "./Pages/Main";
-import PizzasMenu from "./Components/PizzasMenu";
-import SliceMenu from "./Components/SliceMenu";
-import RollsMenu from "./Components/RollsMenu";
-import DrinksMenu from "./Components/DrinksMenu";
-import SaucesMenu from "./Components/SaucesMenu";
+import PizzasMenu from "./Components/Menu/PizzasMenu";
+import SliceMenu from "./Components/Menu/SliceMenu";
+import RollsMenu from "./Components/Menu/RollsMenu";
+import DrinksMenu from "./Components/Menu/DrinksMenu";
+import SaucesMenu from "./Components/Menu/SaucesMenu";
 import React from "react";
 
 
@@ -24,7 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main/>}/>
           <Route path="menu" element={<Menu/>}>
-            <Route path="pizza" element={<PizzasMenu/>}/>
+            <Route path="pizzas" element={<PizzasMenu/>}/>
             <Route path="pizza-slice" element={<SliceMenu/>}/>
             <Route path="pizza-rolls" element={<RollsMenu/>}/>
             <Route path="drinks" element={<DrinksMenu/>}/>

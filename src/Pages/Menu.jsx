@@ -1,14 +1,18 @@
-import React from 'react';
-import {NavLink, Outlet} from "react-router-dom";
+import React, {useEffect} from 'react';
+import {NavLink, Outlet, useNavigate} from "react-router-dom";
 
 const Menu = () => {
   const menuItems = Object.entries({
-    Пицца: "pizza",
+    Пицца: "pizzas",
     "Кусок пиццы": "pizza-slice",
     "Пицца-роллы": "pizza-rolls",
     Напитки: "drinks",
     Соусы: "sauces",
   })
+  const navigate = useNavigate();
+  useEffect(() => navigate("pizzas"), [])
+
+
   return (
     <div className="container-wrapper">
       {/*<div className="page-bg" style=" background-image: url(upload/bg-pizza.jpg); "></div>*/}
