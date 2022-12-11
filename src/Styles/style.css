@@ -800,8 +800,8 @@ body {
 
 .categories ul li {
     -webkit-touch-callout: none;
-    background-color: #f9f9f9;
-    border-radius: 30px;
+    background-color: #f3f3f3;
+    border-radius: 5px;
     cursor: pointer;
     font-weight: 700;
     padding: 10px 30px;
@@ -827,8 +827,8 @@ body {
 }
 
 .sort__label span {
-    border-bottom: 1px dashed #fab940;
-    color: #fab940;
+    border-bottom: 1px dashed #fe5f1e;
+    color: #fe5f1e;
     cursor: pointer;
     line-height: 25px;
     font-weight: 700;
@@ -872,6 +872,7 @@ body {
     align-items: center;
     justify-content: center;
     margin-left: 0;
+    transition: all .2s ease-in-out;
 }
 
 #container {
@@ -904,7 +905,7 @@ body {
 }
 
 .sort__popup ul li.active, .sort__popup ul li:hover {
-    color: #fab940;
+    color: #fe5f1e;
     font-weight: 700;
     list-style: none;
     text-align: left;
@@ -1422,8 +1423,9 @@ ul.single-offer-category-filter li {
     line-height: 0;
     position: absolute;
     top: 28px;
-    left: 43px;
+    left: 31px;
     z-index: 9;
+    cursor: pointer;
 }
 
 .offer-menu2-thumb-image {
@@ -1431,14 +1433,14 @@ ul.single-offer-category-filter li {
     line-height: 0;
     position: absolute;
     top: 28px;
-    left: 43px;
+    left: 31px;
 }
 
 .offer-menu2-shadow {
     background: url(../../public/static/images/shadow-frame.png) no-repeat;
     width: 369px;
     height: 17px;
-    margin-top: -10px;
+    margin-top: -12px;
     margin-bottom: 10px;
 }
 
@@ -1511,6 +1513,7 @@ span.offer-menu2-icon:before {
     color: #9b040c;
     font-family: 'Patua One', cursive;
     line-height: 1;
+    padding: 0 10px;
 }
 
 .archive .offer-menu-items {
