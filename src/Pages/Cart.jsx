@@ -20,7 +20,8 @@ const Cart = () => {
               <p>Вероятней всего, вы не
                 заказывали ещё пиццу.<br/>Для того, чтобы заказать пиццу, перейди на главную страницу.<br/>
               </p>
-              <img src="/static/images/cart/empty-cart.db905d1f4b063162f25b.png" alt="Empty cart"/>
+              <img src="/static/images/cart/empty-cart.db905d1f4b063162f25b.png" alt="Empty cart"
+              style={{ width: 420}}/>
               <a className="button button--black" href="/">
                 <span>Вернуться назад</span>
               </a>

@@ -69,14 +69,15 @@ const NavHeader = () => {
         <div className="mobile-menu-wrapper">
           <div className="menu-main-nav-menu-container">
             <ul id="menu-main-nav-menu-1" className="mobile-menu">
-              <li className="menu-item menu-item-home current-menu-item current_page_item"><a
-                href="index.html">Главная</a></li>
-              <li className="menu-item"><a href="menu.html">Меню</a></li>
-              <li className="menu-item"><a href="pizzas.html">Пицца</a></li>
-              <li className="menu-item"><a href="about.html">О нас</a></li>
-              <li className="menu-item"><a href="contact.html">Контакты</a></li>
-              <li className="menu-item"><a href="blog.html">Блог</a></li>
-              <li className="menu-item"><a href="blog.html">Корзина</a></li>
+
+              {navItems.map(item => (
+                  <li className="menu-item menu-item-home current-menu-item current_page_item" key={item[0]}>
+                    <NavLink
+                        style={({isActive}) => ({color: isActive ? "#fab940" : ""})}
+                        to={item[1]}>{item[0]}
+                    </NavLink>
+                  </li>
+              ))}
             </ul>
           </div>
         </div>
