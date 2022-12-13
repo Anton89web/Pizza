@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import SkeletonMenu from "./SkeletonMenu";
 
 const DrinksMenu = () => {
   const [drinks, setDrinks] = useState()
@@ -34,7 +35,7 @@ const DrinksMenu = () => {
             <div className="clear"></div>
           </div>
         ))
-        : <h1>Загружается...</h1>
+        : [...new Array(6)].map((e, i) => <SkeletonMenu key={i}/>)
       }
     </div>
   );

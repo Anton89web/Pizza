@@ -1,13 +1,14 @@
 import './App.css';
 import NavHeader from "./Components/NavHeader";
 import Pizza from "./Pages/Pizza";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Contact from "./Pages/Contact";
 import Cart from "./Pages/Cart";
 import About from "./Pages/About";
 import Blog from "./Pages/Blog";
 import Menu from "./Pages/Menu";
 import Main from "./Pages/Main";
+import NoFound from "./Pages/404";
 import PizzasMenu from "./Components/Menu/PizzasMenu";
 import SliceMenu from "./Components/Menu/SliceMenu";
 import RollsMenu from "./Components/Menu/RollsMenu";
@@ -18,7 +19,7 @@ import React from "react";
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <div className="App">
         <NavHeader/>
         <Routes>
@@ -35,9 +36,11 @@ function App() {
           <Route path="about" element={<About/>}/>
           <Route path="contacts" element={<Contact/>}/>
           <Route path="cart" element={<Cart/>}/>
+          <Route path="*" element={<NoFound/>}/>
+
         </Routes>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 

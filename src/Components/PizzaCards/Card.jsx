@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const PizzaCard = ({imageUrl, title, ingredients, types, sizes, price}) => {
+const Card = ({imageUrl, title, ingredients, types, sizes, price}) => {
   const [testoIndex, setTestoIndex] = useState(0)
   const [size, setSize] = useState(0)
 
@@ -56,4 +56,4 @@ const PizzaCard = ({imageUrl, title, ingredients, types, sizes, price}) => {
   );
 };
 
-export default PizzaCard;
+export default Card;

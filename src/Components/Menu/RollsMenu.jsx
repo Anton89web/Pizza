@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import SkeletonMenu from "./SkeletonMenu";
 
 
 const RollsMenu = () => {
@@ -35,7 +36,7 @@ const RollsMenu = () => {
             <div className="clear"></div>
           </div>
         ))
-        : <h1>Загружается...</h1>
+        : [...new Array(6)].map((e, i) => <SkeletonMenu key={i}/>)
       }
 
     </div>
