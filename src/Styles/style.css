@@ -716,6 +716,7 @@ body {
 .cart__item {
     border-top: 1px solid #f6f6f6;
     display: flex;
+    flex-wrap: wrap;
     margin-top: 30px;
     padding-top: 30px;
     width: 100%;
@@ -1572,6 +1573,7 @@ body.admin-bar .header-wrapper {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    gap: 10px;
 }
 
 .button_cart span {
@@ -1796,14 +1798,14 @@ ul.single-offer-category-filter li {
     color: #fab940;
     font-family: 'Patua One', cursive;
     line-height: 1;
-    text-align: right;
+    text-align: left;
     white-space: nowrap;
 }
 
 .single-offer-item {
     margin-bottom: 30px;
     display: flex;
-    align-items: end;
+    align-items: center;
     padding: 0 10px;
 }
 
@@ -2371,6 +2373,7 @@ a.post-type-link {
 
 a.post-type-link img {
     float: left;
+    width: 100%;
 }
 
 a:hover .view-overlay-bg,

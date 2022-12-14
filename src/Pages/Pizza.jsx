@@ -3,6 +3,7 @@ import Card from "../Components/PizzaCards/Card";
 import Sort from "../Components/Sort";
 import {Link} from "react-router-dom";
 import Skeleton from "../Components/PizzaCards/Skeleton";
+import Categories from "../Components/Categories";
 
 
 const Pizza = () => {
@@ -13,14 +14,6 @@ const Pizza = () => {
   const [nameSort, setNameSort] = useState("популярности ↓")
   const [active, setActive] = useState(0)
 
-  const arrCategory = [
-    "Все",
-    "Мясные",
-    "Вегетарианская",
-    "Гриль",
-    "Острые",
-    "Закрытые",
-  ]
 
   useEffect(() => {
     fetch("https://6391e33cac688bbe4c55b334.mockapi.io/api/v1/pizzas")
@@ -35,6 +28,42 @@ const Pizza = () => {
         }
       )
   }, [])
+
+  const changeCategory = function (pizzas) {
+    switch (categoryIndex) {
+      case 0 :
+        return pizzas;
+      case 1 :
+        return pizzas.filter(a => a.category === 1)
+      case 2 :
+        return pizzas.filter(a => a.category === 2)
+      case 3 :
+        return pizzas.filter(a => a.category === 3)
+      case 4 :
+        return pizzas.filter(a => a.category === 4)
+      case 5 :
+        return pizzas.filter(a => a.category === 5)
+    }
+  }
+
+  const changeSort = function (pizzas) {
+    switch (active) {
+      case 0 :
+        return pizzas.sort((a, b) => a.rating - b.rating)
+      case 1 :
+        return pizzas.sort((a, b) => b.rating - a.rating)
+      case 2 :
+        return pizzas.sort((a, b) => a.price - b.price)
+      case 3 :
+        return pizzas.sort((a, b) => b.price - a.price)
+      case 4 :
+        return pizzas.sort((a, b) => a.title - b.title)
+      case 5 :
+        return pizzas.sort((a, b) => b.title - a.title)
+    }
+  }
+
+
   return (
     <div className="container-wrapper">
       {/*<div className="page-bg" style=" background-image: url(upload/bg-pizza.jpg); "></div>*/}
@@ -98,14 +127,7 @@ const Pizza = () => {
 
           <div className="content__top">
             <div className="categories">
-              <ul>
-                {arrCategory.map((category, index) => (
-                  <li
-                    key={category}
-                    onClick={() => setCategoryIndex(index)}
-                    className={(categoryIndex === index) ? "active" : ""}>{category}</li>
-                ))}
-              </ul>
+              <Categories index={categoryIndex} setIndex={setCategoryIndex}/>
             </div>
             <div className="sort">
               <div className="sort__label">
@@ -122,7 +144,7 @@ const Pizza = () => {
 
           <div className="offer-menu2-wrapper">
             <div className="offer-menu2-items">
-              {loaded ? pizzas.map(pizza => <Card {...pizza} key={pizza.id}/>)
+              {loaded ? changeSort(changeCategory(pizzas)).map(pizza => <Card {...pizza} key={pizza.id}/>)
                 : [...new Array(6)].map((e, i) => <Skeleton key={i}/>)
               }
               <div className="clear"></div>

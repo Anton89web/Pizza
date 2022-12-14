@@ -10,7 +10,7 @@ const NoFound = () => {
           <div className="page-title-outher">
             <div className="page-title-inner">
               <span className="page-title-icon flaticon-pizza-slice"></span>
-              <h1 className="page-title">Корзина</h1>
+              <h1 className="page-title">Ошибка</h1>
             </div>
           </div>
         </div>
@@ -21,8 +21,8 @@ const NoFound = () => {
               <h2>Такая страница не существует
               </h2>
               <img
-                style={{height: 500}}
-                src="https://img.freepik.com/free-vector/oops-404-error-with-a-broken-robot-concept-illustration_114360-5529.jpg?w=2000"
+                style={{maxHeight: 500}}
+                src="/static/images/oops-404-error-with-a-broken-robot-concept-illustration_114360-5529.webp"
                 alt="404"/>
               <Link className="button button--black" to="/" style={{marginTop: 50}}>
                 <span>На главную</span>
