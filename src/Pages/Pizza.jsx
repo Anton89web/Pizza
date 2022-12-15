@@ -4,6 +4,8 @@ import Sort from "../Components/Sort";
 import {Link} from "react-router-dom";
 import Skeleton from "../Components/PizzaCards/Skeleton";
 import Categories from "../Components/Categories";
+import Search from "../Components/Search";
+import Pagination from "../Components/Pagination";
 
 
 const Pizza = () => {
@@ -13,10 +15,12 @@ const Pizza = () => {
   const [popup, setPopup] = useState(false)
   const [nameSort, setNameSort] = useState("популярности ↓")
   const [active, setActive] = useState(0)
+  const [value, setValue] = useState();
+  const [page, setPage] = useState(1)
 
 
   useEffect(() => {
-    fetch("https://6391e33cac688bbe4c55b334.mockapi.io/api/v1/pizzas")
+    fetch(`https://6391e33cac688bbe4c55b334.mockapi.io/api/v1/pizzas?p=${page}&l=6`)
       .then(res => res.json())
       .then(
         (res) => {
@@ -27,8 +31,9 @@ const Pizza = () => {
           alert(error)
         }
       )
-  }, [])
+  }, [page])
 
+  const filter = value ? pizzas.filter(e => e.title.toLowerCase().includes(value.toLowerCase())) : pizzas;
   const changeCategory = function (pizzas) {
     switch (categoryIndex) {
       case 0 :
@@ -57,9 +62,9 @@ const Pizza = () => {
       case 3 :
         return pizzas.sort((a, b) => b.price - a.price)
       case 4 :
-        return pizzas.sort((a, b) => a.title - b.title)
+        return pizzas.sort((a, b) => b.title.localeCompare(a.title))
       case 5 :
-        return pizzas.sort((a, b) => b.title - a.title)
+        return pizzas.sort((a, b) => a.title.localeCompare(b.title))
     }
   }
 
@@ -92,20 +97,7 @@ const Pizza = () => {
                 </div>
               </div>
             </a>
-              <div className="Search_root__eiX89">
-                <svg className="Search_icon__XMmYc" enableBackground="new 0 0 32 32" id="EditableLine" version="1.1"
-                     viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="14" cy="14" fill="none" id="XMLID_42_" r="9" stroke="#000000" strokeLinecap="round"
-                          strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="2"></circle>
-                  <line fill="none" id="XMLID_44_" stroke="#000000" strokeLinecap="round" strokeLinejoin="round"
-                        strokeMiterlimit="10" strokeWidth="2" x1="27" x2="20.366" y1="27" y2="20.366"></line>
-                </svg>
-                <input className="Search_input__klILD" placeholder="Поиск пиццы..." value={""}/>
-                <svg className="Search_clearIcon__eIw10" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"></path>
-                </svg>
-              </div>
+              <Search value={value} setValue={setValue}/>
               <div className="header__cart">
                 <Link className="button_cart button--cart" to="cart"><span>0 ₽</span>
                   <div className="button__delimiter"></div>
@@ -144,18 +136,18 @@ const Pizza = () => {
 
           <div className="offer-menu2-wrapper">
             <div className="offer-menu2-items">
-              {loaded ? changeSort(changeCategory(pizzas)).map(pizza => <Card {...pizza} key={pizza.id}/>)
+              {loaded ? changeSort(changeCategory(filter)).map(pizza => <Card {...pizza} key={pizza.id}/>)
                 : [...new Array(6)].map((e, i) => <Skeleton key={i}/>)
               }
               <div className="clear"></div>
             </div>
+            <Pagination setPage={setPage}/>
           </div>
           <div className="clear"></div>
         </div>
         {/*<-- end page wrapper -->*/}
       </div>
       {/*<-- end container -->*/}
-      <div className="clear"></div>
     </div>
   );
 };

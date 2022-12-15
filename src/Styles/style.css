@@ -1642,7 +1642,54 @@ body.admin-bar .header-wrapper {
     right: 15px;
     top: 15px;
     width: 18px;
+    transition: all .3s ease-in-out;
 }
+
+.Search_clearIcon__eIw10:hover {
+    opacity: 1;
+}
+
+.pagination {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: solid 1px #fe5f1e;
+    cursor: pointer;
+}
+
+.pagination a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    color: inherit;
+}
+
+.selected a {
+    background-color: #fe5f1e;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.pagination li:hover {
+    background-color: #fe5f1e;
+    color: #fff;
+}
+
 
 /*------------------------------------------------------------------
 [end of 3. Header ]
