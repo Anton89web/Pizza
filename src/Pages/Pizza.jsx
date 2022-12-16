@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Card from "../Components/PizzaCards/Card";
 import Sort from "../Components/Sort";
 import {Link} from "react-router-dom";
@@ -6,19 +6,23 @@ import Skeleton from "../Components/PizzaCards/Skeleton";
 import Categories from "../Components/Categories";
 import Search from "../Components/Search";
 import Pagination from "../Components/Pagination";
-import {CartAmount} from "../App";
+import {useDispatch, useSelector} from "react-redux";
 
 
 const Pizza = () => {
-  const {amount, setAmount} = useContext(CartAmount)
+  const dispatch = useDispatch()
+  const sortIndex = useSelector(state => (state.filterSlice.sortIndex))
+  const sortName = useSelector(state => (state.filterSlice.sortName))
+  const categoryId = useSelector(state => (state.filterSlice.categoryId))
+  const amount = useSelector(state => state.cartSlice.amount)
+  const sum = useSelector(state => state.cartSlice.sum)
   const [pizzas, setPizzas] = useState();
   const [loaded, setLoaded] = useState(false);
-  const [categoryIndex, setCategoryIndex] = useState(0)
   const [popup, setPopup] = useState(false)
-  const [nameSort, setNameSort] = useState("популярности ↓")
-  const [active, setActive] = useState(0)
   const [value, setValue] = useState();
   const [page, setPage] = useState(1)
+
+  console.log(sum)
 
 
   useEffect(() => {
@@ -36,8 +40,9 @@ const Pizza = () => {
   }, [page])
 
   const filter = value ? pizzas.filter(e => e.title.toLowerCase().includes(value.toLowerCase())) : pizzas;
+
   const changeCategory = function (pizzas) {
-    switch (categoryIndex) {
+    switch (categoryId) {
       case 0 :
         return pizzas;
       case 1 :
@@ -54,7 +59,7 @@ const Pizza = () => {
   }
 
   const changeSort = function (pizzas) {
-    switch (active) {
+    switch (sortIndex) {
       case 0 :
         return pizzas.sort((a, b) => a.rating - b.rating)
       case 1 :
@@ -101,7 +106,7 @@ const Pizza = () => {
             </a>
               <Search value={value} setValue={setValue}/>
               <div className="header__cart">
-                <Link className="button_cart button--cart" to="cart"><span>0 ₽</span>
+                <Link className="button_cart button--cart" to="/cart"><span>{sum} ₽</span>
                   <div className="button__delimiter"></div>
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -121,7 +126,7 @@ const Pizza = () => {
 
           <div className="content__top">
             <div className="categories">
-              <Categories index={categoryIndex} setIndex={setCategoryIndex}/>
+              <Categories/>
             </div>
             <div className="sort">
               <div className="sort__label">
@@ -130,9 +135,9 @@ const Pizza = () => {
                     d="M10 5C10 5.16927 9.93815 5.31576 9.81445 5.43945C9.69075 5.56315 9.54427 5.625 9.375 5.625H0.625C0.455729 5.625 0.309245 5.56315 0.185547 5.43945C0.061849 5.31576 0 5.16927 0 5C0 4.83073 0.061849 4.68424 0.185547 4.56055L4.56055 0.185547C4.68424 0.061849 4.83073 0 5 0C5.16927 0 5.31576 0.061849 5.43945 0.185547L9.81445 4.56055C9.93815 4.68424 10 4.83073 10 5Z"
                     fill="#2C2C2C"></path>
                 </svg>
-                <b>Сортировка по:</b><span onClick={() => setPopup(!popup)}>{nameSort}</span></div>
+                <b>Сортировка по:</b><span onClick={() => setPopup(!popup)}>{sortName}</span></div>
               {popup &&
-              <Sort popup={popup} setPopup={setPopup} setNameSort={setNameSort} setActive={setActive} active={active}/>}
+              <Sort popup={popup} setPopup={setPopup}/>}
             </div>
           </div>
 

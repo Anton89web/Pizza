@@ -37,8 +37,7 @@ const SliceMenu = () => {
     }
     return arr
   }
-
-  console.log(moveZeros([1, 2, 0, 1, 0, 1, 0, 3, 0, 1]))
+  
   return (
     <div className="single-offer-category-item isotope-item cat2">
       {loaded ?

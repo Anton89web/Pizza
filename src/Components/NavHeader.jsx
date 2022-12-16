@@ -1,10 +1,11 @@
-import React, {useContext, useRef} from 'react';
+import React, {useRef} from 'react';
 import {Link, NavLink} from "react-router-dom";
-import {CartAmount} from "../App";
+import {useSelector} from "react-redux";
 
 const NavHeader = () => {
-    const {amount, setAmount} = useContext(CartAmount)
-
+    const amount = useSelector(state => state.cartSlice.amount)
+    const sum = useSelector(state => state.cartSlice.sum)
+  
     const navItems = Object.entries({
       Главная: "/",
       Меню: "menu",
@@ -44,7 +45,7 @@ const NavHeader = () => {
                   ))}
                 </ul>
                 <div className="header__cart">
-                  <Link className="button_cart button--cart" to="cart"><span>0 ₽</span>
+                  <Link className="button_cart button--cart" to="cart"><span>{sum} ₽</span>
                     <div className="button__delimiter"></div>
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path

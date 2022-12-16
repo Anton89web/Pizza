@@ -14,37 +14,31 @@ import SliceMenu from "./Components/Menu/SliceMenu";
 import RollsMenu from "./Components/Menu/RollsMenu";
 import DrinksMenu from "./Components/Menu/DrinksMenu";
 import SaucesMenu from "./Components/Menu/SaucesMenu";
-import React, {useState} from "react";
-
-export const CartAmount = React.createContext()
+import React from "react";
 
 
 function App() {
-  const [amount, setAmount] = useState(0)
   return (
-
     <BrowserRouter>
-      <CartAmount.Provider value={{amount, setAmount}}>
-        <div className="App">
-          <NavHeader/>
-          <Routes>
-            <Route path="/" element={<Main/>}/>
-            <Route path="menu" element={<Menu/>}>
-              <Route path="pizzas" element={<PizzasMenu/>}/>
-              <Route path="pizza-slice" element={<SliceMenu/>}/>
-              <Route path="pizza-rolls" element={<RollsMenu/>}/>
-              <Route path="drinks" element={<DrinksMenu/>}/>
-              <Route path="sauces" element={<SaucesMenu/>}/>
-            </Route>
-            <Route path="pizza" element={<Pizza/>}/>
-            <Route path="blog" element={<Blog/>}/>
-            <Route path="about" element={<About/>}/>
-            <Route path="contacts" element={<Contact/>}/>
-            <Route path="cart" element={<Cart/>}/>
-            <Route path="*" element={<NoFound/>}/>
-          </Routes>
-        </div>
-      </CartAmount.Provider>
+      <div className="App">
+        <NavHeader/>
+        <Routes>
+          <Route path="/" element={<Main/>}/>
+          <Route path="menu" element={<Menu/>}>
+            <Route path="pizzas" element={<PizzasMenu/>}/>
+            <Route path="pizza-slice" element={<SliceMenu/>}/>
+            <Route path="pizza-rolls" element={<RollsMenu/>}/>
+            <Route path="drinks" element={<DrinksMenu/>}/>
+            <Route path="sauces" element={<SaucesMenu/>}/>
+          </Route>
+          <Route path="pizza" element={<Pizza/>}/>
+          <Route path="blog" element={<Blog/>}/>
+          <Route path="about" element={<About/>}/>
+          <Route path="contacts" element={<Contact/>}/>
+          <Route path="cart" element={<Cart/>}/>
+          <Route path="*" element={<NoFound/>}/>
+        </Routes>
+      </div>
     </BrowserRouter>
   )
     ;
