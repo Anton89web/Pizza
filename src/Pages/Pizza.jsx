@@ -7,37 +7,35 @@ import Categories from "../Components/Categories";
 import Search from "../Components/Search";
 import Pagination from "../Components/Pagination";
 import {useDispatch, useSelector} from "react-redux";
+import axios from "axios";
+import {setPageNumber} from "../redux/slices/filterSlice";
 
 
 const Pizza = () => {
   const dispatch = useDispatch()
-  const sortIndex = useSelector(state => (state.filterSlice.sortIndex))
-  const sortName = useSelector(state => (state.filterSlice.sortName))
-  const categoryId = useSelector(state => (state.filterSlice.categoryId))
-  const amount = useSelector(state => state.cartSlice.amount)
-  const sum = useSelector(state => state.cartSlice.sum)
+  const {sortIndex, sortName, categoryId, pageNumber} = useSelector(state => (state.filterSlice))
+  const {amount, sum} = useSelector(state => state.cartSlice)
   const [pizzas, setPizzas] = useState();
   const [loaded, setLoaded] = useState(false);
   const [popup, setPopup] = useState(false)
   const [value, setValue] = useState();
-  const [page, setPage] = useState(1)
 
-  console.log(sum)
 
+  const onChangePage = (page) => {
+    dispatch(setPageNumber(page))
+  };
+
+  const path = categoryId ? '' : `?p=${pageNumber}&l=6`
 
   useEffect(() => {
-    fetch(`https://6391e33cac688bbe4c55b334.mockapi.io/api/v1/pizzas?p=${page}&l=6`)
-      .then(res => res.json())
-      .then(
-        (res) => {
-          setPizzas(res)
-          setLoaded(true)
-        },
-        (error, res) => {
-          alert(error)
-        }
-      )
-  }, [page])
+    axios.get('https://6391e33cac688bbe4c55b334.mockapi.io/api/v1/pizzas' + path)
+      .then(res => {
+        setPizzas(res.data)
+        setLoaded(res.data)
+      })
+
+    window.scrollTo(0, 0)
+  }, [pageNumber, categoryId])
 
   const filter = value ? pizzas.filter(e => e.title.toLowerCase().includes(value.toLowerCase())) : pizzas;
 
@@ -148,7 +146,8 @@ const Pizza = () => {
               }
               <div className="clear"></div>
             </div>
-            <Pagination setPage={setPage}/>
+            {!categoryId && <Pagination page={pageNumber} setPage={onChangePage}/>}
+
           </div>
           <div className="clear"></div>
         </div>

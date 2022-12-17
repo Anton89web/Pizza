@@ -3,9 +3,8 @@ import {Link, NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 const NavHeader = () => {
-    const amount = useSelector(state => state.cartSlice.amount)
-    const sum = useSelector(state => state.cartSlice.sum)
-  
+    const {amount, sum} = useSelector(state => state.cartSlice)
+
     const navItems = Object.entries({
       Главная: "/",
       Меню: "menu",

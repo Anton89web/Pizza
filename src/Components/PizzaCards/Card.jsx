@@ -5,8 +5,7 @@ import {setAmount, setSum} from "../../redux/slices/cartSlice";
 
 const Card = ({imageUrl, title, ingredients, types, sizes, price}) => {
   const dispatch = useDispatch()
-  const amount = useSelector(state => state.cartSlice.amount)
-  const sum = useSelector(state => state.cartSlice.sum)
+  const {amount, sum} = useSelector(state => state.cartSlice)
   const [testoIndex, setTestoIndex] = useState(0)
   const [size, setSize] = useState(0)
   const testoType = ["тонкое", "традиционное"]

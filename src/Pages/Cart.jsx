@@ -2,8 +2,8 @@ import React from 'react';
 import {useSelector} from "react-redux";
 
 const Card = () => {
-  const amount = useSelector(state => state.cartSlice.amount)
-  const sum = useSelector(state => state.cartSlice.sum)
+  const {amount, sum} = useSelector(state => state.cartSlice)
+
   return (
     <div className="container-wrapper">
       <div id="container">
