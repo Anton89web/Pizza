@@ -718,7 +718,6 @@ body {
     display: flex;
     flex-wrap: wrap;
     margin-top: 30px;
-    padding-top: 30px;
     width: 100%;
 }
 
@@ -735,13 +734,12 @@ body {
 .cart__item-img {
     align-items: center;
     display: flex;
-    margin-right: 15px;
-    width: 10%;
+    width: 15%;
 }
 
 .cart__item-img img {
-    height: 80px;
-    width: 80px;
+    height: 100px;
+    width: 100px;
 }
 
 .cart__item-info {
@@ -793,7 +791,7 @@ body {
     align-items: center;
     display: flex;
     justify-content: center;
-    width: 30%;
+    width: 25%;
 }
 
 .cart__item-price b {

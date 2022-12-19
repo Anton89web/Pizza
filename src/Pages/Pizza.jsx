@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Card from "../Components/PizzaCards/Card";
 import Sort from "../Components/Sort";
 import {Link} from "react-router-dom";
@@ -14,11 +14,12 @@ import {setPageNumber} from "../redux/slices/filterSlice";
 const Pizza = () => {
   const dispatch = useDispatch()
   const {sortIndex, sortName, categoryId, pageNumber} = useSelector(state => (state.filterSlice))
-  const {amount, sum} = useSelector(state => state.cartSlice)
+  const {amount, sum, products} = useSelector(state => state.cartSlice)
   const [pizzas, setPizzas] = useState();
   const [loaded, setLoaded] = useState(false);
   const [popup, setPopup] = useState(false)
   const [value, setValue] = useState();
+  const sortRef = useRef()
 
 
   const onChangePage = (page) => {
@@ -34,8 +35,23 @@ const Pizza = () => {
         setLoaded(res.data)
       })
 
-    window.scrollTo(0, 0)
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
   }, [pageNumber, categoryId])
+
+  useEffect(() => {
+    function closePopup(e) {
+      if (!e.path.includes(sortRef.current)) {
+        setPopup(false)
+      }
+    }
+
+    document.body.addEventListener('click', (e) => closePopup(e))
+    return () => document.body.removeEventListener('click', (e) => closePopup(e))
+  }, [])
 
   const filter = value ? pizzas.filter(e => e.title.toLowerCase().includes(value.toLowerCase())) : pizzas;
 
@@ -126,7 +142,7 @@ const Pizza = () => {
             <div className="categories">
               <Categories/>
             </div>
-            <div className="sort">
+            <div className="sort" ref={sortRef}>
               <div className="sort__label">
                 <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -149,7 +165,6 @@ const Pizza = () => {
             {!categoryId && <Pagination page={pageNumber} setPage={onChangePage}/>}
 
           </div>
-          <div className="clear"></div>
         </div>
         {/*<-- end page wrapper -->*/}
       </div>

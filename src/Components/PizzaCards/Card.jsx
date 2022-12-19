@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {setAmount, setSum} from "../../redux/slices/cartSlice";
+import {addProduct, setAmount, setSum} from "../../redux/slices/cartSlice";
 
 
-const Card = ({imageUrl, title, ingredients, types, sizes, price}) => {
+const Card = ({id, imageUrl, title, ingredients, types, sizes, price}) => {
   const dispatch = useDispatch()
   const {amount, sum} = useSelector(state => state.cartSlice)
   const [testoIndex, setTestoIndex] = useState(0)
@@ -13,6 +13,18 @@ const Card = ({imageUrl, title, ingredients, types, sizes, price}) => {
   function changeAmount(i, price) {
     dispatch(setAmount(i))
     dispatch(setSum(sum + price))
+  }
+
+  function addToCart() {
+    const product = {
+      id,
+      imageUrl,
+      title,
+      price,
+      testo: testoType[testoIndex],
+      size: sizes[size]
+    }
+    dispatch(addProduct(product))
   }
 
   return (
@@ -48,7 +60,10 @@ const Card = ({imageUrl, title, ingredients, types, sizes, price}) => {
           </div>
           <div className="line_cart">
             <span className="single-offer-menu2-price">от {price} руб.</span>
-            <button className="button button--outline button--add" onClick={() => changeAmount(amount + 1, price)}>
+            <button className="button button--outline button--add"
+                    onClick={() => {
+                      addToCart()
+                    }}>
               <span style={{fontSize: 20}}>Купить</span></button>
           </div>
 
