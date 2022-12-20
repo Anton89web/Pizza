@@ -29,10 +29,16 @@ const Pizza = () => {
   const path = categoryId ? '' : `?p=${pageNumber}&l=6`
 
   useEffect(() => {
+
     axios.get('https://6391e33cac688bbe4c55b334.mockapi.io/api/v1/pizzas' + path)
       .then(res => {
         setPizzas(res.data)
-        setLoaded(res.data)
+        setLoaded(true)
+      })
+      .catch(err => {
+        setLoaded(false)
+        console.log(err)
+        alert("Ошибка получения пицц с сервера")
       })
 
     window.scrollTo({
