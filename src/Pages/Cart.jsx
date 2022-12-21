@@ -2,7 +2,7 @@ import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {addProduct, clearProduct, minisProduct, removeProduct} from "../redux/slices/cartSlice";
 
-const Card = () => {
+const Cart = () => {
   const dispatch = useDispatch()
   const {amount, sum, products} = useSelector(state => state.cartSlice)
 
@@ -159,4 +159,4 @@ const Card = () => {
   );
 };
 
-export default Card;
+export default Cart;

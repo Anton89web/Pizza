@@ -6,9 +6,9 @@ const Categories = () => {
   const dispatch = useDispatch()
   const categoryId = useSelector(state => (state.filterSlice.categoryId))
 
-  function changeCategoryID(id) {
-    dispatch(setCategoryId(id))
-  }
+  // function changeCategoryID(id) {
+  //   dispatch(setCategoryId(id))
+  // }
 
 
   const arrCategory = [
@@ -24,7 +24,7 @@ const Categories = () => {
       {arrCategory.map((category, i) => (
         <li
           key={category}
-          onClick={() => changeCategoryID(i)}
+          onClick={() => dispatch(setCategoryId(i))}
           className={(i === categoryId) ? "active" : ""}>{category}</li>
       ))}
     </ul>

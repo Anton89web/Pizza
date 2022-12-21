@@ -7,46 +7,54 @@ import Categories from "../Components/Categories";
 import Search from "../Components/Search";
 import Pagination from "../Components/Pagination";
 import {useDispatch, useSelector} from "react-redux";
-import axios from "axios";
-import {setPageNumber} from "../redux/slices/filterSlice";
+import {fetchPizzas} from "../redux/slices/pizzaSlice";
 
 
 const Pizza = () => {
   const dispatch = useDispatch()
-  const {sortIndex, sortName, categoryId, pageNumber} = useSelector(state => (state.filterSlice))
-  const {amount, sum, products} = useSelector(state => state.cartSlice)
-  const [pizzas, setPizzas] = useState();
-  const [loaded, setLoaded] = useState(false);
+  const {sortIndex, sortName, categoryId, pageNumber, searchValue} = useSelector(state => state.filterSlice)
+  const {amount, sum} = useSelector(state => state.cartSlice)
+  const {productsPizza, status} = useSelector(state => state.pizzaSlice)
+
   const [popup, setPopup] = useState(false)
-  const [value, setValue] = useState();
+  const sortArr = [
+    {rating: 'asc'},
+    {rating: 'desc'},
+    {price: 'asc'},
+    {price: 'desc'},
+    {title: 'asc'},
+    {title: 'desc'},
+  ]
   const sortRef = useRef()
+  const page = categoryId ? '' : `&p=${pageNumber}&l=6`;
+  const category = categoryId ? `&category=${categoryId}` : ''
+  const sort = `&sortBy=${Object.keys(sortArr[sortIndex])[0]}&order=${Object.values(sortArr[sortIndex])[0]}`
+  const path = `${page}${sort}${category}`
+  const filterPizzas = searchValue ? productsPizza.filter(obj => (obj.title.toLowerCase()).includes(searchValue.toLowerCase())) : productsPizza;
 
 
-  const onChangePage = (page) => {
-    dispatch(setPageNumber(page))
-  };
-
-  const path = categoryId ? '' : `?p=${pageNumber}&l=6`
-
-  useEffect(() => {
-
-    axios.get('https://6391e33cac688bbe4c55b334.mockapi.io/api/v1/pizzas' + path)
-      .then(res => {
-        setPizzas(res.data)
-        setLoaded(true)
-      })
-      .catch(err => {
-        setLoaded(false)
-        console.log(err)
-        alert("Ошибка получения пицц с сервера")
-      })
+  const getPizzas = () => {
+    dispatch(fetchPizzas({path}))
+    // axios.get(`https://6391e33cac688bbe4c55b334.mockapi.io/api/v1/pizzas?${path}`)
+    //   .then(res => {
+    //     dispatch(setPizzas(res.data))
+    //     setLoaded(true)
+    //   })
+    //   .catch(err => {
+    //     setLoaded(false)
+    //     console.log(err)
+    //     alert("Ошибка получения пицц с сервера")
+    //   })
 
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: 'smooth'
     })
-  }, [pageNumber, categoryId])
+  }
+  useEffect(() => {
+    getPizzas()
+  }, [sortIndex, sortName, categoryId, pageNumber, searchValue])
 
   useEffect(() => {
     function closePopup(e) {
@@ -58,42 +66,6 @@ const Pizza = () => {
     document.body.addEventListener('click', (e) => closePopup(e))
     return () => document.body.removeEventListener('click', (e) => closePopup(e))
   }, [])
-
-  const filter = value ? pizzas.filter(e => e.title.toLowerCase().includes(value.toLowerCase())) : pizzas;
-
-  const changeCategory = function (pizzas) {
-    switch (categoryId) {
-      case 0 :
-        return pizzas;
-      case 1 :
-        return pizzas.filter(a => a.category === 1)
-      case 2 :
-        return pizzas.filter(a => a.category === 2)
-      case 3 :
-        return pizzas.filter(a => a.category === 3)
-      case 4 :
-        return pizzas.filter(a => a.category === 4)
-      case 5 :
-        return pizzas.filter(a => a.category === 5)
-    }
-  }
-
-  const changeSort = function (pizzas) {
-    switch (sortIndex) {
-      case 0 :
-        return pizzas.sort((a, b) => a.rating - b.rating)
-      case 1 :
-        return pizzas.sort((a, b) => b.rating - a.rating)
-      case 2 :
-        return pizzas.sort((a, b) => a.price - b.price)
-      case 3 :
-        return pizzas.sort((a, b) => b.price - a.price)
-      case 4 :
-        return pizzas.sort((a, b) => b.title.localeCompare(a.title))
-      case 5 :
-        return pizzas.sort((a, b) => a.title.localeCompare(b.title))
-    }
-  }
 
 
   return (
@@ -124,7 +96,7 @@ const Pizza = () => {
                 </div>
               </div>
             </a>
-              <Search value={value} setValue={setValue}/>
+              <Search/>
               <div className="header__cart">
                 <Link className="button_cart button--cart" to="/cart"><span>{sum} ₽</span>
                   <div className="button__delimiter"></div>
@@ -163,13 +135,19 @@ const Pizza = () => {
 
           <div className="offer-menu2-wrapper">
             <div className="offer-menu2-items">
-              {loaded ? changeSort(changeCategory(filter)).map(pizza => <Card {...pizza} key={pizza.id}/>)
-                : [...new Array(6)].map((e, i) => <Skeleton key={i}/>)
+              {status === 'error' ? <div className="cart cart--empty"><h2>Призошла ошибка <span>😕</span></h2>
+                  <p>Вероятней всего, произошла ошибка получения пицц с сервера.<br/>Попробуйте перезагрузить
+                    страницу.<br/>
+                  </p>
+                </div> :
+                status === 'loading' ?
+                  [...new Array(6)].map((e, i) => <Skeleton key={i}/>) :
+                  filterPizzas.map(pizza =>
+                    <Card {...pizza} key={pizza.id}/>)
               }
               <div className="clear"></div>
             </div>
-            {!categoryId && <Pagination page={pageNumber} setPage={onChangePage}/>}
-
+            {(categoryId || status === 'error') ? "" : <Pagination/>}
           </div>
         </div>
         {/*<-- end page wrapper -->*/}

@@ -3,9 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {setSortIndex, setSortName} from "../redux/slices/filterSlice";
 
 
-const Sort = ({setPopup, popup, setNameSort, setActive, active}) => {
+const Sort = ({setPopup, popup}) => {
   const dispatch = useDispatch()
-  const sortName = useSelector(state => state.filterSlice.sortName)
   const sortIndex = useSelector(state => state.filterSlice.sortIndex)
   const sortRef = useRef()
 
@@ -17,6 +16,7 @@ const Sort = ({setPopup, popup, setNameSort, setActive, active}) => {
     "алфавиту ↑",
     "алфавиту ↓",
   ]
+
 
   function changePopup(i) {
     dispatch(setSortIndex(i))
