@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {addProduct, setAmount, setSum} from "../../redux/slices/cartSlice";
-
+import {addProduct, selectCartState, setAmount, setSum} from "../../redux/slices/cartSlice";
+import {Link} from "react-router-dom";
 
 const Card = ({id, imageUrl, title, ingredients, types, sizes, price}) => {
   const dispatch = useDispatch()
-  const {amount, sum} = useSelector(state => state.cartSlice)
+  const {amount, sum} = useSelector(selectCartState)
   const [testoIndex, setTestoIndex] = useState(0)
   const [size, setSize] = useState(0)
   const testoType = ["тонкое", "традиционное"]
+
 
   function changeAmount(i, price) {
     dispatch(setAmount(i))
@@ -27,9 +28,13 @@ const Card = ({id, imageUrl, title, ingredients, types, sizes, price}) => {
     dispatch(addProduct(product))
   }
 
+  function addPath(title) {
+
+  }
+
   return (
-    <>
-      <div className="offer-menu2-item-single">
+    <div className="offer-menu2-item-single">
+      <Link to={title}>
         <img className="offer-menu2-frame" src="/static/images/frame.png"/>
         <div className="offer-menu2-shadow"></div>
         <div className="offer-menu2-thumb">
@@ -66,10 +71,10 @@ const Card = ({id, imageUrl, title, ingredients, types, sizes, price}) => {
                     }}>
               <span style={{fontSize: 20}}>Купить</span></button>
           </div>
-
         </div>
-      </div>
-    </>
+      </Link>
+
+    </div>
   );
 };
 

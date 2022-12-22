@@ -1,9 +1,10 @@
 import React, {useRef} from 'react';
 import {Link, NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
+import {selectCartState} from "../redux/slices/cartSlice";
 
 const NavHeader = () => {
-    const {amount, sum} = useSelector(state => state.cartSlice)
+    const {amount, sum} = useSelector(selectCartState)
 
     const navItems = Object.entries({
       Главная: "/",

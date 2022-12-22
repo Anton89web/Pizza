@@ -1,10 +1,11 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {addProduct, clearProduct, minisProduct, removeProduct} from "../redux/slices/cartSlice";
+import {addProduct, clearProduct, minisProduct, removeProduct, selectCartState} from "../redux/slices/cartSlice";
+import {Link} from "react-router-dom";
 
 const Cart = () => {
   const dispatch = useDispatch()
-  const {amount, sum, products} = useSelector(state => state.cartSlice)
+  const {amount, sum, products} = useSelector(selectCartState)
 
   function clearCart() {
     if (window.confirm("Очистить корзину?")) {
@@ -48,9 +49,9 @@ const Cart = () => {
                 </p>
                 <img src="/static/images/cart/empty-cart.db905d1f4b063162f25b.png" alt="Empty cart"
                      style={{width: 420}}/>
-                <a className="button button--black" href="/">
+                <Link className="button button--black" to="/">
                   <span>Вернуться назад</span>
-                </a>
+                </Link>
               </div>
             </div>
             : <div className="container--cart">

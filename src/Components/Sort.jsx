@@ -1,11 +1,11 @@
 import React, {useRef} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {setSortIndex, setSortName} from "../redux/slices/filterSlice";
+import {selectFilter, setSortIndex, setSortName} from "../redux/slices/filterSlice";
 
 
 const Sort = ({setPopup, popup}) => {
   const dispatch = useDispatch()
-  const sortIndex = useSelector(state => state.filterSlice.sortIndex)
+  const {sortIndex} = useSelector(selectFilter)
   const sortRef = useRef()
 
   const list = [

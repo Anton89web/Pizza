@@ -1,20 +1,22 @@
 import React, {useEffect, useRef, useState} from 'react';
-import Card from "../Components/PizzaCards/Card";
 import Sort from "../Components/Sort";
 import {Link} from "react-router-dom";
 import Skeleton from "../Components/PizzaCards/Skeleton";
 import Categories from "../Components/Categories";
 import Search from "../Components/Search";
-import Pagination from "../Components/Pagination";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchPizzas} from "../redux/slices/pizzaSlice";
+import {fetchPizzas, selectPizza} from "../redux/slices/pizzaSlice";
+import {selectCartState} from "../redux/slices/cartSlice";
+import {selectFilter} from "../redux/slices/filterSlice";
+import Card from "../Components/PizzaCards/Card";
+import Pagination from "../Components/Pagination";
 
 
 const Pizza = () => {
   const dispatch = useDispatch()
-  const {sortIndex, sortName, categoryId, pageNumber, searchValue} = useSelector(state => state.filterSlice)
-  const {amount, sum} = useSelector(state => state.cartSlice)
-  const {productsPizza, status} = useSelector(state => state.pizzaSlice)
+  const {sortIndex, sortName, categoryId, pageNumber, searchValue} = useSelector(selectFilter)
+  const {amount, sum} = useSelector(selectCartState)
+  const {productsPizza, status} = useSelector(selectPizza)
 
   const [popup, setPopup] = useState(false)
   const sortArr = [
@@ -35,17 +37,6 @@ const Pizza = () => {
 
   const getPizzas = () => {
     dispatch(fetchPizzas({path}))
-    // axios.get(`https://6391e33cac688bbe4c55b334.mockapi.io/api/v1/pizzas?${path}`)
-    //   .then(res => {
-    //     dispatch(setPizzas(res.data))
-    //     setLoaded(true)
-    //   })
-    //   .catch(err => {
-    //     setLoaded(false)
-    //     console.log(err)
-    //     alert("Ошибка получения пицц с сервера")
-    //   })
-
     window.scrollTo({
       top: 0,
       left: 0,
@@ -143,7 +134,8 @@ const Pizza = () => {
                 status === 'loading' ?
                   [...new Array(6)].map((e, i) => <Skeleton key={i}/>) :
                   filterPizzas.map(pizza =>
-                    <Card {...pizza} key={pizza.id}/>)
+                    <Card {...pizza} key={pizza.id}/>
+                  )
               }
               <div className="clear"></div>
             </div>

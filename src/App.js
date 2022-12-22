@@ -9,6 +9,7 @@ import Blog from "./Pages/Blog";
 import Menu from "./Pages/Menu";
 import Main from "./Pages/Main";
 import NoFound from "./Pages/404";
+import FullPizza from "./Components/FullPizza";
 import PizzasMenu from "./Components/Menu/PizzasMenu";
 import SliceMenu from "./Components/Menu/SliceMenu";
 import RollsMenu from "./Components/Menu/RollsMenu";
@@ -32,6 +33,7 @@ function App() {
             <Route path="sauces" element={<SaucesMenu/>}/>
           </Route>
           <Route path="pizza" element={<Pizza/>}/>
+          <Route path="pizza/:pizzaName" element={<FullPizza/>}/>
           <Route path="blog" element={<Blog/>}/>
           <Route path="about" element={<About/>}/>
           <Route path="contacts" element={<Contact/>}/>
