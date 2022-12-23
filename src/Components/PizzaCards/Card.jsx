@@ -16,7 +16,9 @@ const Card = ({id, imageUrl, title, ingredients, types, sizes, price}) => {
     dispatch(setSum(sum + price))
   }
 
-  function addToCart() {
+  function addToCart(e) {
+    e.preventDefault()
+    // e.stopPropagation()
     const product = {
       id,
       imageUrl,
@@ -66,8 +68,8 @@ const Card = ({id, imageUrl, title, ingredients, types, sizes, price}) => {
           <div className="line_cart">
             <span className="single-offer-menu2-price">от {price} руб.</span>
             <button className="button button--outline button--add"
-                    onClick={() => {
-                      addToCart()
+                    onClick={(e) => {
+                      addToCart(e)
                     }}>
               <span style={{fontSize: 20}}>Купить</span></button>
           </div>
