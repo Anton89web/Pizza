@@ -9,7 +9,7 @@ import Blog from "./Pages/Blog";
 import Menu from "./Pages/Menu";
 import Main from "./Pages/Main";
 import NoFound from "./Pages/404";
-import FullPizza from "./Components/FullPizza";
+import FullPizza from "./Pages/FullPizza";
 import PizzasMenu from "./Components/Menu/PizzasMenu";
 import SliceMenu from "./Components/Menu/SliceMenu";
 import RollsMenu from "./Components/Menu/RollsMenu";

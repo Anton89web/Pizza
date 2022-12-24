@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
+
 const NoFound = () => {
   return (
     <div className="container-wrapper">
