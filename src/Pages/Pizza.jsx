@@ -17,7 +17,6 @@ const Pizza = () => {
   const {sortIndex, sortName, categoryId, pageNumber, searchValue} = useSelector(selectFilter)
   const {amount, sum} = useSelector(selectCartState)
   const {productsPizza, status} = useSelector(selectPizza)
-
   const [popup, setPopup] = useState(false)
   const sortArr = [
     {rating: 'asc'},

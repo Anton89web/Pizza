@@ -1,23 +1,23 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import SkeletonMenu from "./SkeletonMenu";
 
-interface Pizzas {
-    id: number
+interface Slice {
+    id: string
     title: string
     ingredients: string
-    price: number
+    slice_price: number
 }
 
-const PizzasMenu: FC = () => {
-    const [pizzas, setPizzas] = useState<[]>([])
-    const [loaded, setLoaded] = useState<boolean>(false)
+const SliceMenu: React.FC = () => {
+    const [slice, setSlice] = useState([])
+    const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
         fetch("https://6391e33cac688bbe4c55b334.mockapi.io/api/v1/pizzas")
             .then(res => res.json())
             .then(
-                (res) => {
-                    setPizzas(res)
+                (res: []) => {
+                    setSlice(res)
                     setLoaded(true)
                 },
                 (error: Error) => {
@@ -25,10 +25,11 @@ const PizzasMenu: FC = () => {
                 }
             )
     }, [])
+
     return (
-        <div className="single-offer-category-item isotope-item cat1">
+        <div className="single-offer-category-item isotope-item cat2">
             {loaded ?
-                pizzas.map((e: Pizzas) => (
+                slice.map((e: Slice) => (
                     <div className="single-offer-item" key={e.id}>
                         <div className="single-offer-details">
                             <div className="single-offer-title">{e.title}</div>
@@ -36,7 +37,13 @@ const PizzasMenu: FC = () => {
                                 <p>{e.ingredients}</p>
                             </div>
                         </div>
-                        <div className="single-offer-price">от {e.price} ₽</div>
+                        <div style={{
+                            display: 'flex',
+                            alignItems: 'center'
+                        }}>
+                            <span className="page-title-icon flaticon-pizza-slice"></span>
+                            <div className="single-offer-price" style={{width: 50}}>{e.slice_price} ₽</div>
+                        </div>
                         <div className="clear"></div>
                     </div>
                 ))
@@ -46,4 +53,4 @@ const PizzasMenu: FC = () => {
     );
 };
 
-export default PizzasMenu;
+export default SliceMenu;

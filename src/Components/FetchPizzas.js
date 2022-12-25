@@ -1,10 +1,14 @@
 import axios from "axios";
 
-const FetchPizzas = async function (path) {
-  const mockApi = 'https://6391e33cac688bbe4c55b334.mockapi.io/api/v1/pizzas?'
-  const response = await axios.get(`${mockApi}${path}`)
-  console.log(response.data)
-  return response.data
-};
+export async function fetchData(path, setState, setLoaded) {
+  try {
+    const {data} = await axios.get(`https://6391e33cac688bbe4c55b334.mockapi.io/api/v1/${path}`)
+    setState(data)
+    setLoaded(true)
+  } catch (e) {
+    alert(e)
+  }
+}
 
-export default FetchPizzas;
+
+

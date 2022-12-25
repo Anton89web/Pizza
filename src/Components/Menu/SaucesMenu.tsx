@@ -1,30 +1,39 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import SkeletonMenu from "./SkeletonMenu";
-import {fetchData} from "../FetchPizzas";
 
-interface Drinks {
+interface Souse {
     name: string
+    ingr: string
     price: number
 }
 
-const DrinksMenu: FC = () => {
-    const [drinks, setDrinks] = useState<[]>([])
+const SaucesMenu: React.FC = () => {
+    const [souses, setSouses] = useState([])
     const [loaded, setLoaded] = useState(false)
-    const path = "drinks"
+
 
     useEffect(() => {
-        fetchData(path, setDrinks, setLoaded)
+        fetch("https://6391e33cac688bbe4c55b334.mockapi.io/api/v1/sauses")
+            .then(res => res.json())
+            .then(
+                (res: []) => {
+                    setSouses(res)
+                    setLoaded(true)
+                },
+                (error: Error) => {
+                    alert(error)
+                }
+            )
     }, [])
 
     return (
-        <div className="single-offer-category-item isotope-item cat4">
-
-            {loaded ? drinks.map((e: Drinks) => (
+        <div className="single-offer-category-item isotope-item cat5">
+            {loaded ? souses.map((e: Souse) => (
                     <div className="single-offer-item" key={e.name}>
                         <div className="single-offer-details">
                             <div className="single-offer-title">{e.name}</div>
                             <div className="single-offer-content">
-                                <p>0.5 литра</p>
+                                <p>{e.ingr}</p>
                             </div>
                         </div>
                         <div className="single-offer-price">{e.price} ₽</div>
@@ -34,7 +43,7 @@ const DrinksMenu: FC = () => {
                 : [...new Array(6)].map((e, i) => <SkeletonMenu key={i}/>)
             }
         </div>
-    );
+    )
 };
 
-export default DrinksMenu;
+export default SaucesMenu;

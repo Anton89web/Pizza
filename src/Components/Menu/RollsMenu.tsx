@@ -19,7 +19,7 @@ const RollsMenu: FC = () => {
                     setRolls(res)
                     setLoaded(true)
                 },
-                (error: any) => {
+                (error: Error) => {
                     alert(error)
                 }
             )
