@@ -1,10 +1,10 @@
 import React, {FC, useState} from 'react';
 import {useDispatch} from "react-redux";
-import {addProduct} from "../../redux/slices/cartSlice";
 import {Link} from "react-router-dom";
+import {addProduct} from "../../redux/slices/cartSlice";
 
-interface CardProps {
-    id: string
+export interface PizzaProps {
+    id: number
     imageUrl: string
     title: string
     ingredients: string
@@ -13,22 +13,18 @@ interface CardProps {
     price: number
     testo?: string,
     size?: number
+    count: number
 }
 
 // @ts-ignore
-const Card: FC = ({id, imageUrl, title, ingredients, types, sizes, price}: CardProps) => {
+const Card: FC = ({id, imageUrl, title, ingredients, types, sizes, price}: PizzaProps) => {
     const dispatch = useDispatch()
     const [testoIndex, setTestoIndex] = useState(0)
     const [size, setSize] = useState(0)
     const testoType = ["тонкое", "традиционное"]
 
 
-    // function changeAmount(i, price) {
-    //     dispatch(setAmount(i))
-    //     dispatch(setSum(sum + price))
-    // }
-
-    function addToCart(e: MouseEvent) {
+    function addToCart(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
         const product = {
             id,
@@ -54,41 +50,42 @@ const Card: FC = ({id, imageUrl, title, ingredients, types, sizes, price}: CardP
                                                               height="220" alt="hawaii"/></div>
                 <div className="clear"></div>
                 <span className="offer-menu2-icon flaticon-pizza-slice"></span>
-                <div className="offer-menu2-details">
-                    <div className="single-offer-menu2-title">{title}</div>
-                    <div className="single-offer-menu2-content">
-                        <p style={{"lineHeight": "1.3em"}}>{ingredients}</p>
-                    </div>
-                    <div className="pizza-block__selector">
-                        <ul>
-                            {types.map((type) => <li
-                                key={type}
-                                onClick={(e) => {
-                                    e.preventDefault()
-                                    setTestoIndex(type)
-                                }}
-                                className={(testoIndex === type) ? "active" : ""}>{testoType[type]}</li>)}
-                        </ul>
-                        <ul style={{"marginBottom": 0}}>
-                            {sizes.map((e, i) => <li
-                                key={e}
-                                onClick={(e) => {
-                                    e.preventDefault()
-                                    setSize(i)
-                                }}
-                                className={(size === i) ? "active" : ""}>{e} см.</li>)}
-                        </ul>
-                    </div>
-                    <div className="line_cart">
-                        <span className="single-offer-menu2-price">от {price} руб.</span>
-                        <button className="button button--outline button--add"
-                                onClick={(e: MouseEvent) => {
-                                    addToCart(e)
-                                }}>
-                            <span style={{fontSize: 20}}>Купить</span></button>
-                    </div>
-                </div>
+                <div className="single-offer-menu2-title">{title}</div>
             </Link>
+            <div className="offer-menu2-details">
+                <div className="single-offer-menu2-content">
+                    <p style={{"lineHeight": "1.3em"}}>{ingredients}</p>
+                </div>
+                <div className="pizza-block__selector">
+                    <ul>
+                        {types.map((type) => <li
+                            key={type}
+                            onClick={(e) => {
+                                e.preventDefault()
+                                setTestoIndex(type)
+                            }}
+                            className={(testoIndex === type) ? "active" : ""}>{testoType[type]}</li>)}
+                    </ul>
+                    <ul style={{"marginBottom": 0}}>
+                        {sizes.map((e, i) => <li
+                            key={e}
+                            onClick={(e) => {
+                                e.preventDefault()
+                                setSize(i)
+                            }}
+                            className={(size === i) ? "active" : ""}>{e} см.</li>)}
+                    </ul>
+                </div>
+                <div className="line_cart">
+                    <span className="single-offer-menu2-price">от {price} руб.</span>
+                    <button className="button button--outline button--add"
+                            onClick={(e) => {
+                                addToCart(e)
+                            }}>
+                        <span style={{fontSize: 20}}>Купить</span></button>
+                </div>
+            </div>
+
 
         </div>
     );

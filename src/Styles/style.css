@@ -1879,6 +1879,7 @@ span.offer-menu2-icon:before {
     font-family: 'Patua One', cursive;
     line-height: 1;
     margin-bottom: 10px;
+    text-align: start;
 }
 
 .single-offer-menu2-price {

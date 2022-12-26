@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import SkeletonMenu from "./SkeletonMenu";
-import {fetchData} from "../FetchPizzas";
+import {fetchData} from "../../Api/FetchProducts";
 
 interface Drinks {
     name: string

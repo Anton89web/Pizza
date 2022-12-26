@@ -13,7 +13,7 @@ interface Pizza {
 
 const FullPizza: FC = () => {
     const [pizza, setPizza] = useState<Pizza>()
-    const {pizzaName} = useParams<string>()
+    const {pizzaName} = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
