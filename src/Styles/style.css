@@ -995,9 +995,22 @@ body {
     fill: #fff;
 }
 
+.button--outline:disabled:hover svg path {
+    fill: #fe5f1e;
+}
+
 
 .button--outline:hover {
     background-color: #fe5f1e;
+}
+
+.cart__item-count-minus:disabled {
+    opacity: .4;
+}
+
+.cart__item-count-minus:disabled:hover {
+    background-color: #fff;
+    color: #c61e1e;
 }
 
 .button--black {

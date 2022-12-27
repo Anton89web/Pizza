@@ -23,6 +23,10 @@ const Pizza = () => {
     const {amount, sum} = useSelector(selectCartState)
     const {productsPizza, status} = useSelector(selectPizza)
     const [popup, setPopup] = useState<boolean>(false)
+    const sortRef = useRef(null)
+    const page = categoryId ? '' : `&p=${pageNumber}&l=6`;
+    const category = categoryId ? `&category=${categoryId}` : ''
+    const filterPizzas = searchValue ? productsPizza.filter((obj: PizzaProps) => (obj.title.toLowerCase()).includes(searchValue.toLowerCase())) : productsPizza;
     const sortArr = [
         {rating: 'asc'},
         {rating: 'desc'},
@@ -31,13 +35,8 @@ const Pizza = () => {
         {title: 'asc'},
         {title: 'desc'},
     ]
-    const sortRef = useRef(null)
-    const page = categoryId ? '' : `&p=${pageNumber}&l=6`;
-    const category = categoryId ? `&category=${categoryId}` : ''
     const sort = `&sortBy=${Object.keys(sortArr[sortIndex])[0]}&order=${Object.values(sortArr[sortIndex])[0]}`
     const path = `${page}${sort}${category}`
-    const filterPizzas = searchValue ? productsPizza.filter((obj: PizzaProps) => (obj.title.toLowerCase()).includes(searchValue.toLowerCase())) : productsPizza;
-
 
     const getPizzas = () => {
         dispatch(fetchPizzas(path))
@@ -64,8 +63,6 @@ const Pizza = () => {
     }, [])
 
 
-    // @ts-ignore
-    // @ts-ignore
     return (
         <div className="container-wrapper">
             {/*<div className="page-bg" style=" background-image: url(upload/bg-pizza.jpg); "></div>*/}
@@ -156,7 +153,7 @@ const Pizza = () => {
                             }
                             <div className="clear"></div>
                         </div>
-                        {(categoryId || status === 'error') ? "" : <Pagination/>}
+                        {(categoryId || status === 'error' || searchValue) ? "" : <Pagination/>}
                     </div>
                 </div>
                 {/*<-- end page wrapper -->*/}

@@ -109,6 +109,7 @@ const Cart = () => {
                                             <p>{obj.testo}, {obj.size} см.</p></div>
                                         <div className="cart__item-count">
                                             <button
+                                                disabled={obj.count === 1}
                                                 onClick={() => clickMinusPizza(obj.id, i)}
                                                 className="button button--outline button--circle cart__item-count-minus">
                                                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
