@@ -1,12 +1,12 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {Link, NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {selectCartState} from "../redux/slices/cartSlice";
 
 
 const NavHeader: React.FC = () => {
-        const {amount, sum} = useSelector(selectCartState)
 
+        const {amount, sum} = useSelector(selectCartState)
         const navItems = Object.entries({
             Главная: "/",
             Меню: "menu",
@@ -16,6 +16,11 @@ const NavHeader: React.FC = () => {
             Блог: "blog",
             Корзина: "cart "
         })
+
+        useEffect(() => {
+            localStorage.setItem('cartBtn', JSON.stringify([amount, sum]))
+        }, [amount])
+
         const menu = useRef<HTMLDivElement>(null)
 
         function showMenu() {

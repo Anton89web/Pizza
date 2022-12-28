@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {addProduct, clearProduct, minisProduct, removeProduct, selectCartState} from "../redux/slices/cartSlice";
 import {Link} from "react-router-dom";
@@ -7,6 +7,10 @@ import {PizzaProps} from "../Components/PizzaCards/Card";
 const Cart = () => {
     const dispatch = useDispatch()
     const {amount, sum, products} = useSelector(selectCartState)
+
+    useEffect(() => {
+        localStorage.setItem("cartProducts", JSON.stringify(products))
+    }, [products])
 
     function clearCart() {
         if (window.confirm("Очистить корзину?")) {
