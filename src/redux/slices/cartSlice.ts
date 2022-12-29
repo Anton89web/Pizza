@@ -8,7 +8,6 @@ interface CartSliceState {
     products: PizzaProps[]
 }
 
-
 const initialState: CartSliceState = {
     amount: JSON.parse(localStorage.getItem('cartBtn') as string)[0] || 0,
     sum: JSON.parse(localStorage.getItem('cartBtn') as string)[1] || 0,
@@ -20,7 +19,11 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addProduct(state, action) {
-            const findProduct = state.products.find(obj => obj.id === action.payload.id)
+            const findProduct = state.products.find(obj => (
+                obj.id === action.payload.id &&
+                obj.size === action.payload.size &&
+                obj.testo === action.payload.testo
+            ))
             if (findProduct) {
                 findProduct.count++
             } else {
@@ -32,7 +35,12 @@ const cartSlice = createSlice({
             state.amount++
         },
         minisProduct(state, action) {
-            const findProduct = state.products.find(obj => obj.id === action.payload.id)
+            const findProduct = state.products.find(obj =>
+                (
+                    obj.id === action.payload.id &&
+                    obj.size === action.payload.size &&
+                    obj.testo === action.payload.testo
+                ))
             if (findProduct) findProduct.count -= 1
             state.sum = state.products.reduce((sum, obj) => {
                 return obj.price * obj.count + sum

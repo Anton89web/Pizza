@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
 import {addProduct} from "../../redux/slices/cartSlice";
@@ -11,18 +11,21 @@ export interface PizzaProps {
     types: number[]
     sizes: number[]
     price: number
-    testo?: string,
-    size?: number
+    testo: string,
+    size: number
     count: number
 }
 
-// @ts-ignore
-const Card: FC = ({id, imageUrl, title, ingredients, types, sizes, price}: PizzaProps) => {
+
+const Card = ({id, imageUrl, title, ingredients, types, sizes, price}: PizzaProps) => {
     const dispatch = useDispatch()
+    const countPizzaStorage = JSON.parse(localStorage.getItem('cartProducts') as string)
+        .filter((e: PizzaProps) => e.id === id).reduce((sum: any, current: any) => sum + current.count, 0)
     const [testoIndex, setTestoIndex] = useState(0)
     const [size, setSize] = useState(0)
     const testoType = ["тонкое", "традиционное"]
-
+    const [localCountPizza, setLocalCountPizza] = useState(0)
+    let pricePizza = size ? Math.floor(price * (sizes[size]) / 26) : price
 
     function addToCart(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
@@ -30,13 +33,16 @@ const Card: FC = ({id, imageUrl, title, ingredients, types, sizes, price}: Pizza
             id,
             imageUrl,
             title,
-            price,
+            price: pricePizza,
             testo: testoType[testoIndex],
             size: sizes[size]
         }
         dispatch(addProduct(product))
     }
 
+    const reduce = JSON.parse(localStorage.getItem('cartProducts') as string)
+        .filter((e: PizzaProps) => e.id === id).reduce((sum: any, current: any) => sum + current.count, 0)
+    console.log(reduce)
 
     return (
         <div className="offer-menu2-item-single">
@@ -77,12 +83,16 @@ const Card: FC = ({id, imageUrl, title, ingredients, types, sizes, price}: Pizza
                     </ul>
                 </div>
                 <div className="line_cart">
-                    <span className="single-offer-menu2-price">от {price} руб.</span>
+                    <span className="single-offer-menu2-price">от {pricePizza} руб.</span>
                     <button className="button button--outline button--add"
                             onClick={(e) => {
-                                addToCart(e)
+                                addToCart(e);
+                                setLocalCountPizza(localCountPizza + 1)
                             }}>
-                        <span style={{fontSize: 20}}>Купить</span></button>
+                        <span style={{fontSize: 20}}>Купить</span>
+                        {(!!localCountPizza || !!countPizzaStorage) &&
+                        <span className="button__count">{localCountPizza || countPizzaStorage}</span>}
+                    </button>
                 </div>
             </div>
 

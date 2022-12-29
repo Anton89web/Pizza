@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {addProduct, clearProduct, minisProduct, removeProduct, selectCartState} from "../redux/slices/cartSlice";
 import {Link} from "react-router-dom";
 import {PizzaProps} from "../Components/PizzaCards/Card";
 
-const Cart = () => {
+const Cart: FC = () => {
     const dispatch = useDispatch()
     const {amount, sum, products} = useSelector(selectCartState)
 
@@ -18,10 +18,8 @@ const Cart = () => {
         }
     }
 
-    function clickAddPizza(id: number) {
-        dispatch(addProduct({
-            id
-        }))
+    function clickAddPizza(obj: PizzaProps) {
+        dispatch(addProduct(obj))
     }
 
     function deletePizza(i: number) {
@@ -30,10 +28,11 @@ const Cart = () => {
         }
     }
 
-    function clickMinusPizza(id: number, i: number) {
-        dispatch(minisProduct({id, i}))
+    function clickMinusPizza(obj: PizzaProps) {
+        dispatch(minisProduct(obj))
     }
 
+    console.log(products)
     return (
         <div className="container-wrapper">
             <div id="container">
@@ -55,8 +54,8 @@ const Cart = () => {
                                 </p>
                                 <img src="/static/images/cart/empty-cart.db905d1f4b063162f25b.png" alt="Empty cart"
                                      style={{width: 420}}/>
-                                <Link className="button button--black" to="/">
-                                    <span>Вернуться назад</span>
+                                <Link className="button button--black" to="/pizza">
+                                    <span>Вернуться к пиццам</span>
                                 </Link>
                             </div>
                         </div>
@@ -109,12 +108,14 @@ const Cart = () => {
                                                  src={obj.imageUrl}
                                                  alt="Pizza"/>
                                         </div>
-                                        <div className="cart__item-info"><h3>{obj.title}</h3>
-                                            <p>{obj.testo}, {obj.size} см.</p></div>
+                                        <div className="cart__item-info">
+                                            <h3>{obj.title}</h3>
+                                            <p>{obj.testo || ""}, {obj.size || ""} см.</p>
+                                        </div>
                                         <div className="cart__item-count">
                                             <button
                                                 disabled={obj.count === 1}
-                                                onClick={() => clickMinusPizza(obj.id, i)}
+                                                onClick={() => clickMinusPizza(obj)}
                                                 className="button button--outline button--circle cart__item-count-minus">
                                                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
@@ -124,7 +125,7 @@ const Cart = () => {
                                                 </svg>
                                             </button>
                                             <b>{obj.count}</b>
-                                            <button onClick={() => clickAddPizza(obj.id)}
+                                            <button onClick={() => clickAddPizza(obj)}
                                                     className="button button--outline button--circle cart__item-count-plus">
                                                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
@@ -157,18 +158,18 @@ const Cart = () => {
                             </div>
                             <div className="cart__bottom">
                                 <div className="cart__bottom-details">
-                                    <span> Всего пицц: <b>{amount} шт.</b> </span><span> Сумма заказа: <b>{sum} ₽</b> </span>
+                                    <span> Всего товаров: <b>{amount} шт.</b> </span><span> Сумма заказа: <b>{sum} ₽</b> </span>
                                 </div>
-                                <div className="cart__bottom-buttons"><a
-                                    className="button button--outline button--add go-back-btn"
-                                    href="/">
-                                    <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5"
-                                              strokeLinecap="round"
-                                              strokeLinejoin="round"></path>
-                                    </svg>
-                                    <span>Вернуться назад</span></a>
+                                <div className="cart__bottom-buttons">
+                                    <Link to="/pizza" className="button button--outline button--add go-back-btn">
+                                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5"
+                                                  strokeLinecap="round"
+                                                  strokeLinejoin="round"></path>
+                                        </svg>
+                                        <span>Выбрать пиццу</span>
+                                    </Link>
                                     <div className="button pay-btn"><span>Оплатить сейчас</span></div>
                                 </div>
                             </div>

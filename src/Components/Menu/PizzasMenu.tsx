@@ -1,5 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import SkeletonMenu from "./SkeletonMenu";
+import {Link} from "react-router-dom";
 
 interface Pizzas {
     id: number
@@ -37,6 +38,9 @@ const PizzasMenu: FC = () => {
                             </div>
                         </div>
                         <div className="single-offer-price">от {e.price} ₽</div>
+                        <Link to="/pizza" className="button_cart button--cart button_menu">
+                            Выбрать пиццу
+                        </Link>
                         <div className="clear"></div>
                     </div>
                 ))
