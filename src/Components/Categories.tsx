@@ -16,7 +16,7 @@ const Categories: React.FC = React.memo(() => {
         "Острые",
         "Закрытые",
     ]
-    console.log("render")
+
     return (
         <ul>
             {arrCategory.map((category, i) => (

@@ -42,7 +42,6 @@ const Card = ({id, imageUrl, title, ingredients, types, sizes, price}: PizzaProp
 
     const reduce = JSON.parse(localStorage.getItem('cartProducts') as string)
         .filter((e: PizzaProps) => e.id === id).reduce((sum: any, current: any) => sum + current.count, 0)
-    console.log(reduce)
 
     return (
         <div className="offer-menu2-item-single">

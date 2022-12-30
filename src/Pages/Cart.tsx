@@ -31,8 +31,7 @@ const Cart: FC = () => {
     function clickMinusPizza(obj: PizzaProps) {
         dispatch(minisProduct(obj))
     }
-
-    console.log(products)
+    
     return (
         <div className="container-wrapper">
             <div id="container">

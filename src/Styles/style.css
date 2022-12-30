@@ -653,7 +653,6 @@ a:hover {
 img {
     border: 0 none;
     height: auto;
-    max-width: 100%;
 }
 
 .table_view {
