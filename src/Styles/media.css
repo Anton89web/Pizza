@@ -34,6 +34,22 @@
         padding: 0;
         width: 100%;
     }
+
+    .container-wrapper {
+        padding: 0;
+        padding-left: 250px;
+        position: absolute;
+        overflow: scroll;
+        height: 100%;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: right;
+        background-image: url('../../public/static/images/main/bg-pizza.jpeg');
+        animation-name: none;
+        animation-duration: 20s;
+        animation-iteration-count: infinite;
+    }
 }
 
 
@@ -57,7 +73,7 @@
     h1.post-title a, h1.post-title-single {
         font-size: 28px;
     }
-    
+
     .offer-menu2-details {
         margin-left: 0;
     }
