@@ -2,7 +2,8 @@ import React, {FC} from 'react';
 
 const Main: FC = () => {
     return (
-        <div className="container-wrapper flex">
+        <div className="container-wrapper_main flex">
+            <div className="container-wrapper_img"></div>
             <div className="main_title">Только у нас <br/> Лучшая
                 <h1 className="main_subtitle">ПИЦЦА</h1>
             </div>

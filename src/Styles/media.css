@@ -97,6 +97,22 @@
         padding: 10px;
     }
 
+    .container-wrapper_img {
+        padding: 0;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: right;
+        background-image: url(http://localhost:3000/static/media/bg-pizza.bf531f1db498b3341998.jpeg);
+        animation-name: none;
+    }
+
+    .container-wrapper_main {
+        padding: 0;
+    }
+
     .logo {
         float: none;
         display: table-cell;
