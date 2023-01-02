@@ -971,7 +971,7 @@ body {
 
 .content__title svg path {
     stroke: #232323;
-    stroke-width: 1.9;
+    strokeWidth: 1.9;
 }
 
 .content__title {
@@ -1904,22 +1904,22 @@ ul.single-offer-category-filter li {
 }
 
 .single-offer-title {
-    font-size: 22px;
+    font-size: 20px;
     color: #242424;
     font-family: 'Patua One', cursive;
     line-height: 1;
     text-transform: uppercase;
-    margin-bottom: 10px;
 }
 
 .single-offer-details {
     float: left;
     width: 420px;
-    margin-right: 10px;
+    margin: 0 10px;
 }
 
 .single-offer-details p {
     margin-bottom: 0;
+    line-height: 20px;
 }
 
 .single-offer-price {

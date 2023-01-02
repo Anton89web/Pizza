@@ -7,7 +7,6 @@ const Menu = () => {
     const {amount, sum} = useSelector(selectCartState)
     const menuItems = Object.entries({
         Пицца: "pizzas",
-        "Кусок пиццы": "pizza-slice",
         "Пицца-роллы": "pizza-rolls",
         Напитки: "drinks",
         Соусы: "sauces",

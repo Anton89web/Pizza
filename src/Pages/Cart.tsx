@@ -31,7 +31,7 @@ const Cart: FC = () => {
     function clickMinusPizza(obj: PizzaProps) {
         dispatch(minisProduct(obj))
     }
-    
+
     return (
         <div className="container-wrapper">
             <div id="container">
@@ -109,7 +109,8 @@ const Cart: FC = () => {
                                         </div>
                                         <div className="cart__item-info">
                                             <h3>{obj.title}</h3>
-                                            <p>{obj.testo || ""}, {obj.size || ""} см.</p>
+                                            <p>{obj.ingredients}</p>
+                                            <p>{obj.testo || ""} {(obj.size) ? `${obj.size} см.` : ""}</p>
                                         </div>
                                         <div className="cart__item-count">
                                             <button

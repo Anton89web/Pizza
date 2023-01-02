@@ -13,7 +13,6 @@ const NavHeader: React.FC = () => {
             Пицца: "pizza",
             "О нас": "about",
             Контакты: "contacts",
-            Блог: "blog",
             Корзина: "cart "
         })
 

@@ -25,12 +25,13 @@ const SliceMenu: React.FC = () => {
                 }
             )
     }, [])
-
+    console.log(slice)
     return (
         <div className="single-offer-category-item isotope-item cat2">
             {loaded ?
                 slice.map((e: Slice) => (
                     <div className="single-offer-item" key={e.id}>
+                        <img src='/static/images/slice.webp' width={100} height={80} alt="rolls  image"/>
                         <div className="single-offer-details">
                             <div className="single-offer-title">{e.title}</div>
                             <div className="single-offer-content">
